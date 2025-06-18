@@ -24,8 +24,8 @@ class Solution:
             return [-1, -1]
 
         # step 2: search in left part
-        left, right = 0, target_index
-        while left < right and nums[left] != target:
+        left = 0
+        while left < target_index and nums[left] != target:
             # all values in left [left, right] <= target
             mid = (left + right) // 2
             if nums[mid] == target:
@@ -39,10 +39,10 @@ class Solution:
         left_index = left
 
         # step 3: search in right part
-        left, right = target_index, len(nums) - 1
-        while left < right and nums[right] != target:
+        right = len(nums) - 1
+        while target_index < right and nums[right] != target:
             # all values in [left, right] part >= target
-            mid = (left + right) // 2
+            mid = (target_index + right) // 2
             if nums[mid] == target:
                 # all values in [left, mid] = target
                 right -= 1
@@ -77,6 +77,13 @@ class ProblemTest(unittest.TestCase):
         nums = []
         target = 0
         want = [-1, -1]
+        ret = solution.searchRange(nums, target)
+        self.assertEqual(ret, want)
+
+        # case 4
+        nums = [3, 4]
+        target = 3
+        want = [0, 0]
         ret = solution.searchRange(nums, target)
         self.assertEqual(ret, want)
 
