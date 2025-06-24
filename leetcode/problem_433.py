@@ -73,13 +73,16 @@ class ProblemTest(unittest.TestCase):
         ret = solution.minMutation(startGene, endGene, bank)
         self.assertEqual(ret, expected)
 
-        # # case 4
-        # startGene = "AAAAAAAA"
-        # endGene = "CCCCCCCC"
-        # bank = ["AAAAAAAA","AAAAAAAC","AAAAAACC","AAAAACCC","AAAACCCC","AACACCCC","ACCACCCC","ACCCCCCC","CCCCCCCA"]
-        # expected = 4
-        # ret = solution.minMutation(startGene, endGene, bank)
-        # self.assertEqual(ret, expected)
+        # case 4
+        startGene = "AAAAAAAA"
+        endGene = "CCCCCCCC"
+        bank = [
+            "AAAAAAAA", "AAAAAAAC", "AAAAAACC", "AAAAACCC", "AAAACCCC",
+            "AACACCCC", "ACCACCCC", "ACCCCCCC", "CCCCCCCA"
+        ]
+        expected = -1
+        ret = solution.minMutation(startGene, endGene, bank)
+        self.assertEqual(ret, expected)
 
 
 if __name__ == '__main__':
