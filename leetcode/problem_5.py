@@ -13,17 +13,15 @@ class Solution:
 
         max_str = ""
         for right in range(n):
-            for left in range(right, -1, -1):
+            for left in range(right):
                 if s[left] != s[right]:
                     dp[left][right] = False
+                    continue
+                if right - left <= 2:
+                    # left, right or left, some_char, right
+                    dp[left][right] = True
                 else:
-                    if right - left <= 2:
-                        # left, right or left, some_char, right
-                        dp[left][right] = True
-                    else:
-                        # left forhead reference left+1, so left start iterating from right to 0
-                        # right - 1 >= 0, because if right = 1, it will be covered in previous if condition
-                        dp[left][right] = dp[left + 1][right - 1]
+                    dp[left][right] = dp[left + 1][right - 1]
 
                 if dp[left][right] and right - left + 1 > len(max_str):
                     max_str = s[left:right + 1]
