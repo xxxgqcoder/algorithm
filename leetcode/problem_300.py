@@ -5,7 +5,7 @@ from typing import List
 class Solution:
 
     def lengthOfLIS(self, nums: List[int]) -> int:
-        # dp[i]: length of longest subsequence in range [0, i], i included
+        # dp[i]: length of longest subsequence in range [0, i], with ending number being nums[i]
         dp = [1] * len(nums)
         max_len = 1
         for i in range(len(nums)):
