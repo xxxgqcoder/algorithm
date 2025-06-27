@@ -15,6 +15,21 @@ class Solution:
 
         return profit
 
+    def maxProfit_dp(self, prices: List[int]) -> int:
+        # max_prices[i]: max prices in range [i, ..., end], i cluded
+        max_prices = [0] * len(prices)
+        max_prices[-1] = prices[-1]
+        for i in range(len(prices) - 2, -1, -1):
+            max_prices[i] = max(prices[i], max_prices[i + 1])
+
+        #
+        max_profit = 0
+        for i, p in enumerate(prices):
+            # buy at i and sell at max prices
+            max_profit = max(max_profit, max_prices[i] - p)
+
+        return max_profit
+
 
 class ProblemTest(unittest.TestCase):
 
@@ -24,13 +39,15 @@ class ProblemTest(unittest.TestCase):
         # case 1
         prices = [7, 1, 5, 3, 6, 4]
         expected = 5
-        ret = solution.maxProfit(prices)
+        # ret = solution.maxProfit(prices)
+        ret = solution.maxProfit_dp(prices)
         self.assertEqual(ret, expected)
 
         # case 2
         prices = [7, 6, 4, 3, 1]
         expected = 0
-        ret = solution.maxProfit(prices)
+        # ret = solution.maxProfit(prices)
+        ret = solution.maxProfit_dp(prices)
         self.assertEqual(ret, expected)
 
 
